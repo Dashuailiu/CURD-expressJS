@@ -1,6 +1,13 @@
 # Express - CRUD
 
-This program is a demo to test CRUD operations with a `json` file. 
+This program includes two demos to test CRUD operations
+
+- `json` file
+  - router_fs.js
+  - student_fs.js
+- MongoDB
+  - router.js
+  - student.js
 
 Sample:
 

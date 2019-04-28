@@ -1,7 +1,7 @@
 var express = require('express');
 // var fs = require('fs');
 
-var Student = require('./student');
+var st = require('./student');
 
 //* create a 'router' container
 var router = express.Router();
@@ -13,7 +13,7 @@ router
   })
   .get('/students', function(req, res) {
     //TODO page for listing all the students
-    Student.find(function(err, data) {
+    st.getAllStudents(function(err, data) {
       if (err) {
         return res.status(500).send('Server Error.');
       }
@@ -38,7 +38,7 @@ router
   })
   .post('/student', function(req, res) {
     //TODO action for adding a new student
-    new Student(req.body).save(function(err) {
+    st.addStudent(req.body, function(err) {
       if (err) {
         return res.status(500).send('Server Error.');
       }
@@ -47,7 +47,7 @@ router
   })
   .get('/student/:id', function(req, res) {
     //TODO page for editing a student
-    Student.findById(req.params.id, function(err, data) {
+    st.getStudent(parseInt(req.params.id), function(err, data) {
       if (err) {
         return res.status(500).send('Server Error.');
       }
@@ -58,7 +58,7 @@ router
   })
   .post('/student/:id', function(req, res) {
     //TODO action for editing a student
-    Student.findByIdAndUpdate(req.params.id, req.body, function(err) {
+    st.updateStudent(parseInt(req.params.id), req.body, function(err) {
       if (err) {
         return res.status(500).send('Server Error.');
       }
@@ -67,7 +67,7 @@ router
   })
   .delete('/student/:id', function(req, res) {
     //TODO action for deleting a student
-    Student.findByIdAndRemove(req.params.id, function(err) {
+    st.deleteStudent(parseInt(req.params.id), function(err) {
       if (err) {
         return res.status(500).send('Server Error.');
       }
